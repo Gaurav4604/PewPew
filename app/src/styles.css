@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Nulshock";
+  src: url("../assets/fonts/nulshock.otf") format("opentype");
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #000;
+  font-family: "Nulshock", sans-serif;
+}
+
+canvas {
+  display: block;
+}
