@@ -57,7 +57,7 @@ if __name__ == "__main__":
             # Create a formatted string of the scores dictionary
             # e.g., "{'go left': '0.01', 'go right': '0.02', ...}"
             formatted_scores = {
-                word: f"{score:.2f}" for word, score in prediction.items()
+                word: f"{score:.2f}" for word, score in prediction.items()  # type: ignore
             }
 
             # Print the formatted scores.
