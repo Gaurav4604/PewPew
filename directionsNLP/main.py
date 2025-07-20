@@ -10,10 +10,10 @@ MODELS = {
     "go right": "voice_module_go_right.onnx",
     "go up": "voice_module_go_up.onnx",
     "go down": "voice_module_go_down.onnx",
-    "fire": "voice_module_fire.onnx",
+    "single fire": "voice_module_single_fire.onnx",
     "triple fire": "voice_module_triple_fire.onnx",
     "use shield": "voice_module_use_shield.onnx",
-    "stop": "voice_module_stop.onnx",
+    "game stop": "voice_module_stop.onnx",
 }
 
 DETECTION_THRESHOLD = 0.8
@@ -75,7 +75,7 @@ if __name__ == "__main__":
             )
 
             # Check the results for any non-zero scores
-            for model_name, score in prediction.items():
+            for model_name, score in prediction.items():  # type: ignore
                 # --- YOUR FIX APPLIED HERE ---
                 # Explicitly cast the numpy.float32 to a standard Python float before comparison
                 python_score = float(score)
