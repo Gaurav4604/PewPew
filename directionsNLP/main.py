@@ -13,10 +13,10 @@ MODELS = {
     "single fire": "voice_module_single_fire.onnx",
     "triple fire": "voice_module_triple_fire.onnx",
     "use shield": "voice_module_use_shield.onnx",
-    "game stop": "voice_module_stop.onnx",
+    "game stop": "voice_module_game_stop.onnx",
 }
 
-DETECTION_THRESHOLD = 0.8
+DETECTION_THRESHOLD = 0.7
 DEBOUNCE_SECONDS = 1  # How long to wait after a detection before allowing another
 
 # Create a reverse mapping to get friendly action names from model names
