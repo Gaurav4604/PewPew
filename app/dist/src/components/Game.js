@@ -37,20 +37,36 @@ const react_1 = __importStar(require("react"));
 const GameEngine_1 = require("../game/GameEngine");
 const Game = ({ width, height }) => {
     const canvasRef = (0, react_1.useRef)(null);
+    const gameEngineRef = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(() => {
         const canvas = canvasRef.current;
         if (!canvas)
             return;
-        const ctx = canvas.getContext("2d");
-        if (!ctx)
-            return;
-        const gameEngine = new GameEngine_1.GameEngine(ctx, width, height);
-        gameEngine.start();
-        // Cleanup on component unmount
+        // If the game engine doesn't exist, create it
+        if (!gameEngineRef.current) {
+            const ctx = canvas.getContext("2d");
+            if (!ctx)
+                return;
+            gameEngineRef.current = new GameEngine_1.GameEngine(ctx, width, height);
+            gameEngineRef.current.start();
+        }
+        else {
+            // If it exists, just call the resize method
+            gameEngineRef.current.resize(width, height);
+        }
+        // Stop the engine on component unmount
         return () => {
-            gameEngine.stop();
+            // The null check is needed in React 18 StrictMode
+            if (gameEngineRef.current) {
+                gameEngineRef.current.stop();
+                gameEngineRef.current = null;
+            }
         };
     }, [width, height]);
-    return react_1.default.createElement("canvas", { ref: canvasRef, width: width, height: height });
+    const handleClick = () => {
+        var _a;
+        (_a = gameEngineRef.current) === null || _a === void 0 ? void 0 : _a.handleClick();
+    };
+    return (react_1.default.createElement("canvas", { ref: canvasRef, width: width, height: height, onClick: handleClick, style: { display: "block" } }));
 };
 exports.default = Game;
